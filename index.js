@@ -11,13 +11,7 @@ exports.init = function(config) {
 exports.model = function(table, schema) {
   var ModelClass = function(data) {
     this._doc = {};
-
-    if (data) {
-      Object.keys(this.schema.fields).forEach(function(key) {
-        if (data[key] !== undefined)
-          this[key] = data[key];
-      }.bind(this));
-    }
+    this.assign(data, true);
   };
 
   // instances are documents
